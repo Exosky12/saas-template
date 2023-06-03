@@ -13,13 +13,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider appearance={
-      {
-       elements: {
-         fontFamily: "Roboto",
-       }
-      }
-    }>
+    <ClerkProvider>
       <html lang="en">
         <body>{children}</body>
       </html>
