@@ -2,7 +2,7 @@ import { ArticleExample } from "@prisma/client";
 import prisma from "../prisma/prisma-client";
 
 class ArticleExampleService {
-  async createArticle(
+  async create(
     title: string,
     content: string,
     published: boolean
@@ -17,7 +17,7 @@ class ArticleExampleService {
     return article;
   }
 
-  async getArticle(id: string): Promise<ArticleExample | null> {
+  async get(id: string): Promise<ArticleExample | null> {
     const article = await prisma.articleExample.findUnique({
       where: {
         id,
@@ -26,12 +26,12 @@ class ArticleExampleService {
     return article;
   }
 
-  async getAllArticles(): Promise<ArticleExample[]> {
+  async getAll(): Promise<ArticleExample[]> {
     const articles = await prisma.articleExample.findMany();
     return articles;
   }
 
-  async updateArticle(
+  async update(
     id: string,
     title?: string,
     content?: string,
@@ -50,7 +50,7 @@ class ArticleExampleService {
     return article;
   }
 
-  async deleteArticle(id: string): Promise<ArticleExample | null> {
+  async delete(id: string): Promise<ArticleExample | null> {
     const article = await prisma.articleExample.delete({
       where: {
         id,
