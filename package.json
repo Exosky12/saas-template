@@ -32,7 +32,6 @@
     "tailwindcss-animate": "^1.0.5",
     "typescript": "5.0.4",
     "uuidv4": "^6.2.13"
-    "typescript": "5.0.4"
   },
   "devDependencies": {
     "@types/jest": "^29.5.2",
