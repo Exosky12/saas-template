@@ -59,3 +59,5 @@ class ArticleExampleService {
     return article;
   }
 }
+
+export const articleService = new ArticleExampleService();
