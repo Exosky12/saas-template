@@ -3,9 +3,9 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 import { v4 as uuidv4 } from 'uuid';
 import Image from 'next/image';
-import { Moon} from 'lucide-react';
 import Link from 'next/link';
 import {useState} from "react";
+import {ThemeToggle} from "@/components/ThemeToggle";
 
 export const NavBar = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +25,7 @@ export const NavBar = () => {
 				</Link>
 				<div className='flex md:order-2'>
 					<div className={'flex items-center gap-x-1 cursor-pointer'}>
-						<Moon color='black' size={32} strokeWidth={1} />
+						<ThemeToggle />
 						<SignedIn>
 							<UserButton
 								afterSignOutUrl='/'
