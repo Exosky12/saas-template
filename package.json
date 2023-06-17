@@ -10,9 +10,12 @@
     "test": "jest"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.19.0",
     "@prisma/client": "^4.15.0",
+    "@clerk/nextjs": "^4.19.0",
+    "@radix-ui/react-dropdown-menu": "^2.0.5",
     "@radix-ui/react-menubar": "^1.0.3",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@tailwindcss/typography": "^0.5.9",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",

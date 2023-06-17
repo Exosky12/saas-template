@@ -1,11 +1,11 @@
 'use client';
 
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
-import { v4 as uuidv4 } from 'uuid';
 import Image from 'next/image';
 import Link from 'next/link';
-import {useState} from "react";
-import {ThemeToggle} from "@/components/ThemeToggle";
+import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export const NavBar = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +24,7 @@ export const NavBar = () => {
 					/>
 				</Link>
 				<div className='flex md:order-2'>
-					<div className={'flex items-center gap-x-2 cursor-pointer'}>
+					<div className={'flex items-center gap-x-1 cursor-pointer'}>
 						<ThemeToggle />
 						<SignedIn>
 							<UserButton
