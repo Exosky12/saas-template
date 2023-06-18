@@ -1,6 +1,6 @@
 import { NavBar } from "@/components/NavBar"
 import { Providers } from "@/components/Providers"
-import { cn } from "@/utils"
+import { cn } from "@/lib/utils"
 import { ClerkProvider } from "@clerk/nextjs"
 import { Inter } from "next/font/google"
 import "./globals.css"
