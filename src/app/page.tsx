@@ -1,4 +1,5 @@
 "use client";
+import { ArticleCard } from "@/components/CRUD.example/article_card.example";
 import { CreateExampleForm } from "@/components/CRUD.example/create_form.example";
 import { ArticleExample } from "@prisma/client";
 import { useEffect, useState } from "react";
@@ -27,8 +28,7 @@ export default function Home() {
       <CreateExampleForm />
       {articlesExample.map((article) => (
         <div key={article.id}>
-          <h2>{article.title}</h2>
-          <p>{article.content}</p>
+          <ArticleCard article={article} />
         </div>
       ))}
     </>

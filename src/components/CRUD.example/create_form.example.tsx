@@ -19,16 +19,32 @@ export const CreateExampleForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Title :
-        <input type="text" name="title" />
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-3 p-4 m-4 rounded shadow-md"
+    >
+      <label className="block">
+        <span className="text-gray-700">Title :</span>
+        <input
+          type="text"
+          name="title"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        />
       </label>
-      <label>
-        Content :
-        <input type="text" name="content" />
+      <label className="block">
+        <span className="text-gray-700">Content :</span>
+        <input
+          type="text"
+          name="content"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        />
       </label>
-      <button type="submit">Create</button>
+      <button
+        type="submit"
+        className="px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+      >
+        Create
+      </button>
     </form>
   );
 };

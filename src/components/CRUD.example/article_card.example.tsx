@@ -1,75 +1,28 @@
-'use client'
 import { ArticleExample } from "@prisma/client";
-import { useState } from "react";
-import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "../../../components/ui/card";
-import { cn } from "@/lib/utils";
-import { Separator } from "../../../components/ui/separator"
-import { Switch } from "../../../components/ui/switch"
-import { Button } from "../../../components/ui/button"
-import { BellRing, Check } from "lucide-react"
 
-type CardProps = React.ComponentProps<typeof Card> & {article: ArticleExample}
-
-const notifications = [
-    {
-      title: "Your call has been confirmed.",
-      description: "1 hour ago",
-    },
-    {
-      title: "You have a new message!",
-      description: "1 hour ago",
-    },
-    {
-      title: "Your subscription is expiring soon!",
-      description: "2 hours ago",
-    },
-  ]
-
-export const ArticleCard = ({ className, article, ...props }: CardProps) => {
-
-    return (
-        <Card className={cn("w-[380px]", className)} {...props}>
-      <CardHeader>
-        <CardTitle>Notifications</CardTitle>
-        <CardDescription>You have 3 unread messages.</CardDescription>
-      </CardHeader>
-      <CardContent className="grid gap-4">
-        <div className=" flex items-center space-x-4 rounded-md border p-4">
-          <BellRing />
-          <div className="flex-1 space-y-1">
-            <p className="text-sm font-medium leading-none">
-              Push Notifications
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Send notifications to device.
-            </p>
-          </div>
-          <Switch />
-        </div>
-        <div>
-          {notifications.map((notification, index) => (
-            <div
-              key={index}
-              className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
-            >
-              <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-              <div className="space-y-1">
-                <p className="text-sm font-medium leading-none">
-                  {notification.title}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {notification.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </CardContent>
-      <CardFooter>
-        <Button className="w-full">
-          <Check className="mr-2 h-4 w-4" /> Mark all as read
-        </Button>
-      </CardFooter>
-    </Card>
-    )
+interface ArticleCardProps {
+  article: ArticleExample;
 }
+
+export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
+  return (
+    <div className="p-4 rounded-lg shadow-md bg-white">
+      <h2 className="text-2xl font-semibold mb-2">{article.title}</h2>
+      <p className="text-gray-600">{article.content}</p>
+      <div className="flex justify-between items-center mt-4">
+        <p className="text-sm text-gray-500">
+          Publié le {new Date(article.createdAt).toLocaleDateString()}
+        </p>
+        <span
+          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+            article.published
+              ? "bg-green-100 text-green-800"
+              : "bg-red-100 text-red-800"
+          }`}
+        >
+          {article.published ? "Publié" : "Non publié"}
+        </span>
+      </div>
+    </div>
+  );
+};
