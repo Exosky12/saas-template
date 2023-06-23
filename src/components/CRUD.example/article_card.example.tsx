@@ -1,4 +1,4 @@
-// Example of server side component
+// Example of server side component + dynamic router
 
 import { ArticleExample } from "@prisma/client";
 import Link from "next/link";
