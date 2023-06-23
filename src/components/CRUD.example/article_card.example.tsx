@@ -1,4 +1,7 @@
+// Example of server side component
+
 import { ArticleExample } from "@prisma/client";
+import Link from "next/link";
 import Icons from "../Icons";
 import {
   Card,
@@ -49,7 +52,9 @@ export const ArticleExampleCard: React.FC<ArticleCardProps> = ({
   return (
     <Card className="w-[360px]">
       <CardHeader>
-        <CardTitle>{article.title}</CardTitle>
+        <CardTitle>
+          <Link href={`crud/${article.id}`}>{article.title}</Link>
+        </CardTitle>
         <CardDescription>
           Publié le {new Date(article.createdAt).toLocaleDateString()}
         </CardDescription>
