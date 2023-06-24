@@ -11,7 +11,7 @@ export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 z-20 w-full bg-white border-b border-gray-200">
+    <nav className="sticky top-0 left-0 z-20 w-full bg-white border-b border-gray-200">
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
         <Link href={"/"}>
           <Image className={"cursor-pointer"} src="/logo.svg" width={124} height={124} alt="Your logo" />
@@ -48,6 +48,7 @@ export const NavBar = () => {
               ["Home", "/"],
               ["Pricing", "/pricing"],
               ["Dashboard", "/Dashboard"],
+              ["Articles", "/crud"],
             ].map(([title, url]) => (
               <Link
                 key={uuidv4()}
