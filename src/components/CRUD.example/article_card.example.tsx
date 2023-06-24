@@ -2,25 +2,15 @@
 
 import { ArticleExample } from "@prisma/client";
 import Link from "next/link";
-import Icons from "../Icons";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+import Icons from "@/components/Icons";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface ArticleCardProps {
   article: ArticleExample;
   getArticles: () => void;
 }
 
-export const ArticleExampleCard: React.FC<ArticleCardProps> = ({
-  article,
-  getArticles,
-}) => {
+export const ArticleExampleCard: React.FC<ArticleCardProps> = ({ article, getArticles }) => {
   async function handleToogle() {
     const response = await fetch("api/crud.example/" + article.id, {
       method: "PUT",
@@ -55,9 +45,7 @@ export const ArticleExampleCard: React.FC<ArticleCardProps> = ({
         <CardTitle>
           <Link href={`crud/${article.id}`}>{article.title}</Link>
         </CardTitle>
-        <CardDescription>
-          Publié le {new Date(article.createdAt).toLocaleDateString()}
-        </CardDescription>
+        <CardDescription>Publié le {new Date(article.createdAt).toLocaleDateString()}</CardDescription>
       </CardHeader>
       <CardContent>
         <p className="text-center">{article.content}</p>
@@ -66,18 +54,13 @@ export const ArticleExampleCard: React.FC<ArticleCardProps> = ({
         <p
           onClick={handleToogle}
           className={`cursor-pointer px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-            article.published
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
+            article.published ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
           }`}
         >
           {article.published ? "Publié" : "Non publié"}
         </p>
         <p>
-          <Icons.Trash
-            className="cursor-pointer text-red-400"
-            onClick={handleDelete}
-          />
+          <Icons.Trash className="cursor-pointer text-red-400" onClick={handleDelete} />
         </p>
       </CardFooter>
     </Card>

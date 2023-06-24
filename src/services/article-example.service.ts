@@ -1,5 +1,5 @@
 import { ArticleExample } from "@prisma/client";
-import prisma from "../../prisma/prisma-client";
+import prisma from "@/prisma-client";
 
 class ArticleExampleService {
   async create(title: string, content: string, published: boolean): Promise<ArticleExample> {

@@ -3,7 +3,7 @@ import { ArticleExampleCard } from "@/components/CRUD.example/article_card.examp
 import { CreateExampleForm } from "@/components/CRUD.example/create_form.example";
 import { ArticleExample } from "@prisma/client";
 import { useEffect, useState } from "react";
-import { ArticleExampleSchema } from "../../../zod/schema.example";
+import { ArticleExampleSchema } from "@/zod/schema.example";
 
 export default function Articles() {
   const [articlesExample, setArticlesExample] = useState<ArticleExample[]>([]);

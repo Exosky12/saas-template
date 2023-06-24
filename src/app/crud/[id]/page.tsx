@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { articleService } from "../../../services/article-example.service";
+import { articleService } from "@/services/article-example.service";
 
 async function getArticleExemple(params: { id: string }) {
   const articleExemple = await articleService.get(params.id);
