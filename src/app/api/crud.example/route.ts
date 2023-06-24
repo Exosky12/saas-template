@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { articleService } from "@/services/article-example.service";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   const articles = await articleService.getAll();
