@@ -1,75 +1,68 @@
-'use client'
+// Example of server side component + dynamic router
+
 import { ArticleExample } from "@prisma/client";
-import { useState } from "react";
-import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "../../../components/ui/card";
-import { cn } from "@/lib/utils";
-import { Separator } from "../../../components/ui/separator"
-import { Switch } from "../../../components/ui/switch"
-import { Button } from "../../../components/ui/button"
-import { BellRing, Check } from "lucide-react"
+import Link from "next/link";
+import Icons from "@/components/Icons";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
-type CardProps = React.ComponentProps<typeof Card> & {article: ArticleExample}
+interface ArticleCardProps {
+  article: ArticleExample;
+  getArticles: () => void;
+}
 
-const notifications = [
-    {
-      title: "Your call has been confirmed.",
-      description: "1 hour ago",
-    },
-    {
-      title: "You have a new message!",
-      description: "1 hour ago",
-    },
-    {
-      title: "Your subscription is expiring soon!",
-      description: "2 hours ago",
-    },
-  ]
+export const ArticleExampleCard: React.FC<ArticleCardProps> = ({ article, getArticles }) => {
+  async function handleToogle() {
+    const response = await fetch("api/crud.example/" + article.id, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ published: !article.published }),
+    });
 
-export const ArticleCard = ({ className, article, ...props }: CardProps) => {
+    if (!response.ok) {
+      console.error("Create fail");
+    } else {
+      console.log("Create succes");
+      getArticles();
+    }
+  }
 
-    return (
-        <Card className={cn("w-[380px]", className)} {...props}>
+  async function handleDelete() {
+    const response = await fetch(`api/crud.example/${article.id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      console.error("Delete fail");
+    } else {
+      console.log("Delete succes");
+      getArticles();
+    }
+  }
+
+  return (
+    <Card className="w-[360px]">
       <CardHeader>
-        <CardTitle>Notifications</CardTitle>
-        <CardDescription>You have 3 unread messages.</CardDescription>
+        <CardTitle>
+          <Link href={`crud/${article.id}`}>{article.title}</Link>
+        </CardTitle>
+        <CardDescription>Publié le {new Date(article.createdAt).toLocaleDateString()}</CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-4">
-        <div className=" flex items-center space-x-4 rounded-md border p-4">
-          <BellRing />
-          <div className="flex-1 space-y-1">
-            <p className="text-sm font-medium leading-none">
-              Push Notifications
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Send notifications to device.
-            </p>
-          </div>
-          <Switch />
-        </div>
-        <div>
-          {notifications.map((notification, index) => (
-            <div
-              key={index}
-              className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
-            >
-              <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-              <div className="space-y-1">
-                <p className="text-sm font-medium leading-none">
-                  {notification.title}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {notification.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+      <CardContent>
+        <p className="text-center">{article.content}</p>
       </CardContent>
-      <CardFooter>
-        <Button className="w-full">
-          <Check className="mr-2 h-4 w-4" /> Mark all as read
-        </Button>
+      <CardFooter className="flex flex-row justify-between">
+        <p
+          onClick={handleToogle}
+          className={`cursor-pointer px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+            article.published ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+          }`}
+        >
+          {article.published ? "Publié" : "Non publié"}
+        </p>
+        <p>
+          <Icons.Trash className="cursor-pointer text-red-400" onClick={handleDelete} />
+        </p>
       </CardFooter>
     </Card>
-    )
-}
+  );
+};

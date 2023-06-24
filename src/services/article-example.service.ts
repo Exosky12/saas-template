@@ -1,12 +1,8 @@
 import { ArticleExample } from "@prisma/client";
-import prisma from "../prisma/prisma-client";
+import prisma from "@/prisma-client";
 
 class ArticleExampleService {
-  async create(
-    title: string,
-    content: string,
-    published: boolean
-  ): Promise<ArticleExample> {
+  async create(title: string, content: string, published: boolean): Promise<ArticleExample> {
     const article = await prisma.articleExample.create({
       data: {
         title,
@@ -31,12 +27,7 @@ class ArticleExampleService {
     return articles;
   }
 
-  async update(
-    id: string,
-    title?: string,
-    content?: string,
-    published?: boolean
-  ): Promise<ArticleExample | null> {
+  async update(id: string, title?: string, content?: string, published?: boolean): Promise<ArticleExample | null> {
     const article = await prisma.articleExample.update({
       where: {
         id,
