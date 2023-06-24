@@ -12,7 +12,7 @@ export const NavBar = () => {
 
 
 	return (
-		<nav className='fixed top-0 left-0 z-20 w-full bg-white border-b border-gray-200'>
+		<nav className='fixed top-0 left-0 z-20 w-full bg-white border-b dark:bg-gray-950 dark:border-0 border-gray-200'>
 			<div className='flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto'>
 				<Link href={'/'}>
 					<Image
@@ -24,7 +24,7 @@ export const NavBar = () => {
 					/>
 				</Link>
 				<div className='flex md:order-2'>
-					<div className={'flex items-center gap-x-1 cursor-pointer'}>
+					<div className={'flex items-center gap-x-2 cursor-pointer'}>
 						<ThemeToggle />
 						<SignedIn>
 							<UserButton
@@ -63,7 +63,7 @@ export const NavBar = () => {
 						isOpen ? 'flex' : 'hidden'
 					} md:flex w-full md:w-auto md:order-1`}
 					id='navbar-sticky'>
-					<ul className='flex flex-col w-full p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white'>
+					<ul className='flex flex-col dark:bg-gray-950 w-full p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white'>
 						{[
 							['Home', '/'],
 							['Pricing', '/pricing'],
@@ -72,7 +72,7 @@ export const NavBar = () => {
 							<Link
 								key={uuidv4()}
 								href={url}
-								className='block py-2 pl-3 pr-4 text-gray-900 rounded active:text-white active:md:text-blue-700 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0'>
+								className='block py-2 pl-3 pr-4 text-gray-900 dark:text-white rounded active:text-white active:md:text-blue-700 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0'>
 								{title}
 							</Link>
 						))}

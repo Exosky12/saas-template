@@ -17,7 +17,7 @@ export default function RootLayout({ children }: {
 }) {
 	return (
 			<html lang='en'>
-				<body className={cn('font-sans min-h-[100vh] dark:bg-slate-700', inter.className)}>
+				<body className={cn('font-sans min-h-[100vh] dark:bg-gray-950', inter.className)}>
 					<Providers>
 						<ClerkProvider>
 							<NavBar />
